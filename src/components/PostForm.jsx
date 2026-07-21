@@ -25,14 +25,16 @@ export const PostForm = props => {
                         onChange={props.onChange}
                     />
                 </label>
+            </div>
+            <div className="form-body">
                 <label>
                     Corpo dell'articolo
-                    <input
+                    <textarea
                         name="body"
-                        type="text"
-                        placeholder=" Inserisci il corpo dell'articolo"
+                        placeholder="Inserisci il corpo dell'articolo"
                         value={props.newArticles.body}
                         onChange={props.onChange}
+                        rows={5}
                     />
                 </label>
             </div>
