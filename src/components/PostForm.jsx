@@ -1,13 +1,54 @@
+import './PostForm.css';
+
 export const PostForm = props => {
     return (
+
         <form onSubmit={props.onSubmit}>
-            <input
-                type="text"
-                value={props.input}
-                placeholder="Inserisci nuovo articolo"
-                onChange={props.onChange}
-            />
-            <button>Aggiungi</button>
+            <div className='form-row'>
+                <label>
+                    Autore
+                    <input
+                        name="author"
+                        type="text"
+                        placeholder=" Inserisci l'Autore"
+                        value={props.newArticles.author}
+                        onChange={props.onChange}
+                    />
+                </label>
+                <label>
+                    Titolo
+                    <input
+                        name="title"
+                        type="text"
+                        placeholder="Inserisci il Titolo"
+                        value={props.newArticles.title}
+                        onChange={props.onChange}
+                    />
+                </label>
+                <label>
+                    Corpo dell'articolo
+                    <input
+                        name="body"
+                        type="text"
+                        placeholder=" Inserisci il corpo dell'articolo"
+                        value={props.newArticles.body}
+                        onChange={props.onChange}
+                    />
+                </label>
+            </div>
+            <label className="form-actions">
+                Vuoi che l'articolo sia pubblico?
+                <input
+                    name="public"
+                    type="checkbox"
+                    checked={props.newArticles.public}
+                    onChange={props.onChange}
+                />
+
+            </label>
+            <button>Aggiungi Articolo</button>
         </form>
+
+
     );
 };
