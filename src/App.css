@@ -1,0 +1,21 @@
+ #root header.container {
+     max-width: 100%;
+     padding: 20px;
+ }
+
+ #root header.container h1 {
+     font-size: 40px;
+     margin-bottom: 30px;
+
+ }
+
+ #root header.container p {
+     font-size: 16px;
+     margin-bottom: 10px;
+
+ }
+
+ #root main.container {
+     max-width: 100%;
+     padding: 20px;
+ }
