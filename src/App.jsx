@@ -6,23 +6,56 @@ import { PostList } from './components/PostList';
 import { PostForm } from './components/PostForm';
 
 export const App = () => {
-  const [posts, setPosts] = useState(['Economia', 'Sport', 'Moda', 'Attualità', 'Cronaca', 'Benessere']);
-  const [input, setInput] = useState('');
+
+
+  const [newArticles, setNewArticles] = useState({
+    author: '',
+    title: '',
+    body: '',
+    public: false
+  });
+
+  const [posts, setPosts] = useState([]);
+
+
+  const handleFormChange = (e) => {
+    setNewArticles(previous => ({
+      ...previous,
+      [e.target.name]: e.target.type === 'checkbox'
+        ? e.target.checked
+        : e.target.value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newArticles.title.trim()) return;
+    setPosts(previous => [...previous, newArticles]);
+    setNewArticles({ author: '', title: '', body: '', public: false });
+  };
+
+  const handleDelete = (title) => {
+    setPosts(previous => previous.filter(post => post.title !== title));
+  };
 
 
   return (
     <>
-      <PostList
-        posts={posts}
-        onClick={(post) => setPosts(posts.filter(_post => _post !== post))} />
-      <PostForm
-        input={input}
-        onSubmit={e => {
-          e.preventDefault();
-          setPosts([...posts, input]);
-          setInput('')
-        }}
-        onChange={e => { setInput(e.target.value) }} />
+      <header className='container'>
+        <h1>Il mio Blog</h1>
+        <p>Aggiungi un articolo nel form qui sotto</p>
+      </header>
+      <main className='container'>
+        <PostList
+          posts={posts}
+          onClick={handleDelete} />
+
+        <PostForm
+          newArticles={newArticles}
+          onChange={handleFormChange}
+          onSubmit={handleSubmit}
+        />
+      </main>
     </>
   );
 };
